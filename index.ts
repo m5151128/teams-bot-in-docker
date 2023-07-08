@@ -1,5 +1,6 @@
 // Import required packages
 import * as restify from "restify";
+import * as path from "path";
 
 // Import required bot services.
 // See https://aka.ms/bot-services to learn more about the different parts of a bot.
@@ -12,13 +13,15 @@ import {
 
 // This bot's main dialog.
 import { TeamsBot } from "./teamsBot";
-import config from "./config";
+import { config } from "dotenv";
+const envFilePath= path.join(__dirname, ".env");
+config({ path: envFilePath });
 
 // Create adapter.
 // See https://aka.ms/about-bot-adapter to learn more about adapters.
 const credentialsFactory = new ConfigurationServiceClientCredentialFactory({
-  MicrosoftAppId: config.botId,
-  MicrosoftAppPassword: config.botPassword,
+  MicrosoftAppId: process.env.BOT_ID,
+  MicrosoftAppPassword: process.env.BOT_PASSWORD,
   MicrosoftAppType: "MultiTenant",
 });
 
