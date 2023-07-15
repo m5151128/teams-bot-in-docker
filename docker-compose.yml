@@ -1,11 +1,10 @@
 version: '3'
 services:
   teams-bot-app:
-    build:
-      context: .
-      dockerfile: ./Dockerfile
+    image: node:18.16
     volumes:
       - .:/app
+    working_dir: /app
     entrypoint:
       - sh
     command:
